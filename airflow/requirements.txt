@@ -1,0 +1,5 @@
+requests
+apache-airflow-providers-apache-kafka==1.6.1
+apache-airflow-providers-common-compat==1.5.1
+confluent-kafka[avro]==2.3.0
+fastavro

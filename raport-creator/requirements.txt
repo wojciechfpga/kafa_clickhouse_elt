@@ -1,0 +1,9 @@
+clickhouse-connect
+fastapi
+uvicorn
+pandas
+matplotlib
+seaborn
+python-docx
+python-dotenv
+jira

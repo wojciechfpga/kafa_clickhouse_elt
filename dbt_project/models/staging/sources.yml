@@ -1,0 +1,56 @@
+version: 2
+
+sources:
+  - name: mydb
+    schema: mydb
+    description: "Source database with e-commerce tables."
+    tables:
+      - name: transactions
+        description: "User transactions table, linking products with customers."
+        columns:
+          - name: id
+            description: "Unique transaction identifier."
+          - name: user_id
+            description: "Identifier of the user performing the transaction."
+          - name: product_id
+            description: "Identifier of the product in the transaction."
+          - name: quantity
+            description: "Number of units of the product in the transaction."
+          - name: value
+            description: "Value of the transaction in local currency."
+          - name: transaction_date
+            description: "Date and time of the transaction."
+
+      - name: users
+        description: "Table with platform user data."
+        columns:
+          - name: id
+            description: "Unique user identifier."
+          - name: first_name
+            description: "User's first name."
+          - name: days_of_experience
+            description: "Number of days the user has been on the platform."
+          - name: total_purchase_amount
+            description: "Total amount spent by the user."
+          - name: state_province
+            description: "User's state or province."
+
+      - name: products
+        description: "Table with product data (e.g., diamonds)."
+        columns:
+          - name: id
+            description: "Unique product identifier."
+          - name: carat
+            description: "Diamond weight in carats."
+          - name: cut
+            description: "Quality of the diamond cut."
+          - name: color
+            description: "Diamond color."
+          - name: clarity
+            description: "Diamond clarity."
+          - name: depth
+            description: "Diamond depth (percent)."
+          - name: table_val
+            description: "Width of the top surface of the diamond (percent)."
+          - name: price
+            description: "Diamond price."

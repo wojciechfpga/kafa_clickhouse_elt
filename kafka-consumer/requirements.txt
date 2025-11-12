@@ -1,0 +1,5 @@
+kafka-python
+clickhouse-connect
+confluent-kafka[avro]
+fastapi
+uvicorn
