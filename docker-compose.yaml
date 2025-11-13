@@ -44,7 +44,6 @@ services:
     environment:
       DBT_PROFILES_DIR: /usr/app/.dbt
 
-    
   broker-1:
     image: apache/kafka:latest
     container_name: broker-1
@@ -82,7 +81,6 @@ services:
         condition: service_healthy
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
-      # POPRAWIONE - użyj DATABASE zamiast CORE:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
       AIRFLOW__CORE__FERNET_KEY: 'BYICMeuTHySeRi8pvPhBegnYuYD4qQK3fLpJA-7xdrg='
       AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'false'
@@ -108,9 +106,6 @@ services:
         echo 'User created!' &&
         airflow webserver & airflow scheduler & airflow triggerer
       "
-
-
-
 
   airflow-postgres:
     image: postgres:15
@@ -160,8 +155,6 @@ services:
       CONFIG_STORAGE_TOPIC: connect-configs
       OFFSET_STORAGE_TOPIC: connect-offsets
       STATUS_STORAGE_TOPIC: connect-status
-
-      # Avro + Schema Registry
       KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
       VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
       KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
@@ -177,9 +170,6 @@ services:
       - schema-registry
       - application-postgres
 
-
-
-
   schema-registry:
     image: confluentinc/cp-schema-registry:7.7.0
     container_name: schema-registry
@@ -191,7 +181,6 @@ services:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: broker-1:19092
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
-
 
   raport-creator:
     build: ./raport-creator
@@ -209,12 +198,6 @@ services:
       CLICKHOUSE_PASSWORD: pass
     volumes:
       - ./raport-creator:/app
-
-
-
-
-
-
 
 volumes:
   postgres_airflow_data:
