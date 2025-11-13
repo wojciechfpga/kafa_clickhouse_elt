@@ -28,7 +28,7 @@ services:
       CLICKHOUSE_USER: user
       CLICKHOUSE_PASSWORD: pass
     volumes:
-      - ./kafka-consumer:/app   # ✅ bind mount OK w trybie dev
+      - ./kafka-consumer:/app
 
   dbt_api:
     build:
@@ -45,9 +45,6 @@ services:
       DBT_PROFILES_DIR: /usr/app/.dbt
 
     
-
-
-
   broker-1:
     image: apache/kafka:latest
     container_name: broker-1
@@ -211,7 +208,7 @@ services:
       CLICKHOUSE_USER: user
       CLICKHOUSE_PASSWORD: pass
     volumes:
-      - ./raport-creator:/app   # ✅ bind mount OK w trybie dev
+      - ./raport-creator:/app
 
 
 
